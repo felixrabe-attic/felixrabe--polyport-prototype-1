@@ -1,0 +1,9 @@
+{
+    "name": "My New App"
+  , "private": true
+  , "dependencies": {
+      "express": "2.4.7"
+    , "stylus": ">= 0.0.1"
+    , "jade": ">= 0.0.1"
+  }
+}
