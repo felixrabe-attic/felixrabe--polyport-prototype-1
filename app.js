@@ -41,13 +41,20 @@ function userSession(req, res, next) {
 
 app.post('/', function(req, res, next) {
     req.session.email = req.body.email;
-    next();
+    res.redirect('/');
 });
 
-app.all('/', userSession, function(req, res) {
+app.get('/', userSession, function(req, res) {
     res.render('index', {
         email: req.session.email
     });
+});
+
+app.get('/logout', function(req, res) {
+    if (req.session.email) {
+        delete(req.session.email);
+    }
+    res.redirect('/');
 });
 
 var port = process.env.PORT || 3000;
