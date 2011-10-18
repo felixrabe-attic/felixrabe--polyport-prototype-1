@@ -57,6 +57,14 @@ app.get('/logout', function(req, res) {
     res.redirect('/');
 });
 
+app.all('/package/*', function(req, res) {
+    res.render('unimplemented');
+});
+
+app.all('/delivery/*', function(req, res) {
+    res.render('unimplemented');
+});
+
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
