@@ -29,7 +29,8 @@ app.configure('production', function() {
     app.use(express.errorHandler()); 
 });
 
-// Routes
+
+// Middleware
 
 function userSession(req, res, next) {
     if (req.session.email) {
@@ -39,7 +40,9 @@ function userSession(req, res, next) {
     }
 }
 
-app.post('/', function(req, res, next) {
+// Routes
+
+app.post('/', function(req, res, next) {  // The login page form POSTs here
     req.session.email = req.body.email;
     res.redirect('/');
 });
@@ -61,7 +64,7 @@ app.all('/package/*', function(req, res) {
     res.render('unimplemented');
 });
 
-app.all('/delivery/*', function(req, res) {
+app.all('/route/*', function(req, res) {
     res.render('unimplemented');
 });
 

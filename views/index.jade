@@ -1,10 +1,9 @@
-h2 You
-p You are logged in as #{email}.
-p What do you want to do next?
+h2 Hello #{email}!
+p What do you want to do?
 ul
     li
-        a(href='/package/new') Have someone deliver my package
+        a(href='/package/new') Add a package to deliver
     li
-        a(href='/delivery/new') Deliver someone elses package for money
+        a(href='/route/new') Enter a new delivery route
     li
         a(href='/logout') Log out
