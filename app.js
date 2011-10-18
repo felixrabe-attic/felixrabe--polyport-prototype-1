@@ -31,15 +31,23 @@ app.configure('production', function() {
 
 // Routes
 
-app.get('/', function(req, res) {
-    res.render('index', {
-        title: 'My New Application'
-    });
+function userSession(req, res, next) {
+    if (req.session.email) {
+        next();
+    } else {
+        res.render('login');
+    }
+}
+
+app.post('/', function(req, res, next) {
+    req.session.email = req.body.email;
+    next();
 });
 
-app.post('/login', function(req, res) {
-    res.header('Content-Type', 'text/plain');
-    res.send(req.body);
+app.all('/', userSession, function(req, res) {
+    res.render('index', {
+        email: req.session.email
+    });
 });
 
 var port = process.env.PORT || 3000;

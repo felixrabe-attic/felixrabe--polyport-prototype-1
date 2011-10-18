@@ -1,4 +1,10 @@
-p Your email address:
-form(method='post', action='/login')
-    input(name='email', placeholder='We will not spam you')
-    input(type='submit', value='Log in')
+h2 You
+p You are logged in as #{email}.
+p What do you want to do next?
+ul
+    li
+        a(href='/package/new') Have someone deliver your package
+    li
+        a(href='/delivery/new') Deliver someones package for money
+    li
+        a(href='/logout') Log out
