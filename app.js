@@ -29,6 +29,24 @@ app.configure('production', function() {
     app.use(express.errorHandler()); 
 });
 
+// Data
+
+function Package(user, description, from, to) {
+    this.user = user;
+    this.description = description;
+    this.from = from;
+    this.to = to;
+}
+
+function Route(user, from, to, notes) {
+    this.user = user;
+    this.from = from;
+    this.to = to;
+    this.notes = notes;
+}
+
+var packages = [];  // packages.push(new Package(...));
+var routes = [];  // routes.push(new Route(...));
 
 // Middleware
 
@@ -40,14 +58,15 @@ function userSession(req, res, next) {
     }
 }
 
-// Routes
+// URL Routes
 
 app.post('/', function(req, res, next) {  // The login page form POSTs here
-    req.session.email = req.body.email;
+    req.session.email = req.body.email;  // Record form data in the session
     res.redirect('/');
 });
 
 app.get('/', userSession, function(req, res) {
+    res.local('flash', req.flash());
     res.render('index', {
         email: req.session.email
     });
@@ -57,6 +76,16 @@ app.get('/logout', function(req, res) {
     if (req.session.email) {
         delete(req.session.email);
     }
+    res.redirect('/');
+});
+
+app.get('/package/new', userSession, function(req, res) {
+    res.render('package/new');
+});
+
+app.post('/package/new', userSession, function(req, res) {
+    packages.push(new Package(req.session.email, req.body.description, req.body.from, req.body.to));
+    req.flash('info', 'Package registered successfully. We\'ve got ' + packages.length + ' packages now.');
     res.redirect('/');
 });
 

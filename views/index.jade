@@ -1,4 +1,9 @@
 h2 Hello #{email}!
+
+if flash.info
+    each info in flash.info
+        p.info= info
+
 p What do you want to do?
 ul
     li: a(href='/package/new') Add a package to deliver
