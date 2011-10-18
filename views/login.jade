@@ -1,5 +1,5 @@
 h2 Login
-p Your email address:
 form(method='post', action='/')
-    input(name='email', placeholder='We will not spam you')
+    label(for='email')= 'Email address: '
+        input(name='email', placeholder='We will not spam you')
     input(type='submit', value='Log in')
