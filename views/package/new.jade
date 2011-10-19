@@ -1,6 +1,16 @@
 h2 New package
 form(method='post', action='/package/new')
     input(name='description', placeholder='Description')
-    input(name='from', placeholder='From')
-    input(name='to', placeholder='To')
+    select(name='from')
+        option Basel
+        option Bern
+        option Genf
+        option Lausanne
+        option(selected) Zürich
+    select(name='to')
+        option(selected) Basel
+        option Bern
+        option Genf
+        option Lausanne
+        option Zürich
     input(type='submit', value='Enter')
