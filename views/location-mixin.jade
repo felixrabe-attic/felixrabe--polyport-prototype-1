@@ -1,0 +1,4 @@
+mixin location(name, selected)
+    select(name=name)
+        for location in ['Basel', 'Bern', 'Genf', 'Lausanne', 'Winterthur', 'Zürich']
+            option(selected=selected==location)= location
