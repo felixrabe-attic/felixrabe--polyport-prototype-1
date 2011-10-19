@@ -3,6 +3,8 @@ PolyPort Prototype Uno
 
 Copyright (C) 2011  www.polyport.org
 
+A web platform matching small to medium-sized deliveries to occasional carriers.
+
 
 Prerequisites
 -------------
