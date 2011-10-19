@@ -2,9 +2,10 @@ h2 New package
 
 include ../location-mixin
 form(method='post', action='/package/new')
-    input(name='description', placeholder='Description')
-    label(for='from')= 'From: '
+    label(for='description') Description:
+        input(name='description')
+    label(for='from') From:
         mixin location('from', 'Zürich')
-    label(for='to')= 'To: '
+    label(for='to') To:
         mixin location('to', 'Basel')
     input(type='submit', value='Enter')
