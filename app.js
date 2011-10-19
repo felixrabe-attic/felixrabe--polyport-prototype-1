@@ -89,7 +89,7 @@ app.post('/package/new', userSession, function(req, res) {
     res.redirect('/');
 });
 
-app.all('/package/*', function(req, res) {
+app.all('/package/*', userSession, function(req, res) {
     res.render('unimplemented');
 });
 
@@ -103,7 +103,7 @@ app.post('/route/new', userSession, function(req, res) {
     res.redirect('/');
 });
 
-app.all('/route/*', function(req, res) {
+app.all('/route/*', userSession, function(req, res) {
     res.render('unimplemented');
 });
 
