@@ -93,6 +93,16 @@ app.all('/package/*', function(req, res) {
     res.render('unimplemented');
 });
 
+app.get('/route/new', userSession, function(req, res) {
+    res.render('route/new');
+});
+
+app.post('/route/new', userSession, function(req, res) {
+    routes.push(new Route(req.session.email, req.body.from, req.body.to, req.body.notes));
+    req.flash('info', 'Route registered successfully. We\'ve got ' + routes.length + ' routes now.');
+    res.redirect('/');
+});
+
 app.all('/route/*', function(req, res) {
     res.render('unimplemented');
 });
