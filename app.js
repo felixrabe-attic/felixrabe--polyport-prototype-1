@@ -3,11 +3,19 @@
  * Module dependencies.
  */
 
-var express = require('express');
+var express = require('express')
+  , stylus = require('stylus')
+  , nib = require('nib');
 
 var app = module.exports = express.createServer();
 
 // Configuration
+
+function stylus_compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(nib());
+}
 
 app.configure(function() {
     app.set('views', __dirname + '/views');
@@ -16,7 +24,8 @@ app.configure(function() {
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'If only you knew' }));
-    app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+    app.use(stylus.middleware({ src: __dirname + '/public'
+                              , compile: stylus_compile }));
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
 });
