@@ -61,6 +61,7 @@ var routes = [];  // routes.push(new Route(...));
 
 function userSession(req, res, next) {
     if (req.session.email) {
+        res.local('session', req.session);
         next();
     } else {
         res.render('login');
@@ -76,9 +77,7 @@ app.post('/', function(req, res, next) {  // The login page form POSTs here
 
 app.get('/', userSession, function(req, res) {
     res.local('flash', req.flash());
-    res.render('index', {
-        email: req.session.email
-    });
+    res.render('index');
 });
 
 app.get('/logout', function(req, res) {
