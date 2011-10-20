@@ -4,6 +4,19 @@ html
         title PolyPort - Prototype Uno
         link(rel='stylesheet', href='/stylesheets/style.css')
     body
-        img(src='/images/logo.png', width='377', height='94')
-        h1 PolyPort - Prototype Uno
-        != body
+        .header_jacket
+            .header.clearfix
+                img.logo(src='/images/logo.png', width='377', height='94')
+                if typeof session != 'undefined'
+                    ul.session
+                        li.email= session.email
+                        li.logout: a(href='/logout') Log out
+        .content_jacket
+            .content
+                != body
+        .footer_jacket
+            .footer
+                ul
+                    li PolyPort © 2011
+                    polyport = 'www.polyport.org'
+                    li: a(href='http://#{polyport}', title=polyport)= polyport
