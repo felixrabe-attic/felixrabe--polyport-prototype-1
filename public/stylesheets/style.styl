@@ -1,13 +1,32 @@
 @import 'nib'
 
+// Definitions
+
+background-color = #F7F7F8
+footer-color = #4C4545
+info-color = #67AF29
+
+// Resets and overrides
+
 body
-    background-color #F7F7F8
+    background-color background-color
     margin 0
     padding 0
+
+h1, h2, h3, h4
+    reset-box-model()
+    margin-bottom 10px
+    font-size 24px
+
+// Links and type
+
+body
     font 16px "Lucida Grande", Helvetica, Arial, sans-serif
 
-.clearfix
-    clearfix()
+a
+    color #00B7FF
+
+// Main layout
 
 .header_jacket
     border-top solid 12px #67AF29
@@ -40,22 +59,23 @@ body
     padding 48px + 10px 10px
 
 .content
-    background-color #F7F7F8
+    background-color background-color
     border-radius 10px
     margin 0 auto
     padding 10px
     width 939px
 
-h1, h2, h3, h4
-    reset-box-model()
-    margin-bottom 10px
-    font-size 24px
+// Secondary layout structures
 
-a
-    color #00B7FF
+// Form elements
 
-p.info
-    color #009900
+// Miscellaneous
+
+.clearfix
+    clearfix()
+
+p.flash-info
+    color info-color
     font-weight bold
 
 label
@@ -63,8 +83,6 @@ label
 
     & > *:first-child
         margin-left 5px
-
-footer-color = #4C4545
 
 .footer
     padding 11px 0 9px 0
