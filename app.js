@@ -115,6 +115,9 @@ app.all('/route/*', userSession, function(req, res) {
     res.render('unimplemented');
 });
 
+var couchdb_url = process.env.CLOUDANT_URL || process.env.COUCHDB_URL || 'http://localhost:5984';
+console.log('CouchDB will be found at ' + couchdb_url);
+
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
