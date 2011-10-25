@@ -1,2 +1,6 @@
 /node_modules
 /public/stylesheets/*.css
+/couchdb*
+!/couchdb/
+/couchdb/*
+!/couchdb/couchdb.ini
