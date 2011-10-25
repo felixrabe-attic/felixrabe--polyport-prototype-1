@@ -5,7 +5,10 @@
 
 var express = require('express')
   , stylus = require('stylus')
-  , nib = require('nib');
+  , nib = require('nib')
+  , cradle = require('cradle')
+  , url = require('url')
+  , utils = require('./lib/utils');
 
 var app = module.exports = express.createServer();
 
@@ -39,6 +42,11 @@ app.configure('production', function() {
 });
 
 // Data
+
+var couchdb_url = process.env.CLOUDANT_URL || process.env.COUCHDB_URL || 'http://localhost:5984';
+var conn = new (cradle.Connection)(utils.parse_url_for_cradle(couchdb_url));
+var db = conn.database('polyport');
+db.create();
 
 function Package(user, description, from, to) {
     this.user = user;
@@ -114,9 +122,6 @@ app.post('/route/new', userSession, function(req, res) {
 app.all('/route/*', userSession, function(req, res) {
     res.render('unimplemented');
 });
-
-var couchdb_url = process.env.CLOUDANT_URL || process.env.COUCHDB_URL || 'http://localhost:5984';
-console.log('CouchDB will be found at ' + couchdb_url);
 
 var port = process.env.PORT || 3000;
 app.listen(port);
