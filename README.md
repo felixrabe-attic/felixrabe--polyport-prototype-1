@@ -9,7 +9,7 @@ A web platform matching small to medium-sized deliveries to occasional carriers.
 Prerequisites
 -------------
 
-* Runs on [Ubuntu](http://www.ubuntu.com/) (tested) or [Mac OS X 10.6+](http://www.apple.com/) (untested)
+* Runs on [Ubuntu](http://www.ubuntu.com/) 10.10+ (tested) or [Mac OS X 10.6+](http://www.apple.com/) (untested)
 * Install [Git](http://git-scm.com/)
 * Install [node.js](http://nodejs.org/)
 * Install [npm](http://npmjs.org/)
