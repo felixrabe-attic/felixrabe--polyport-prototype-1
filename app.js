@@ -2,8 +2,7 @@
 
 var express = require('express'),
      stylus = require('stylus'),
-        nib = require('nib'),
-     cradle = require('cradle');
+        nib = require('nib');
 
 var   couch = require('./lib/couch');
 
@@ -40,10 +39,7 @@ app.configure('production', function() {
 
 // Data
 
-var couchdb_url = process.env.CLOUDANT_URL || process.env.COUCHDB_URL || 'http://localhost:5984';
-var conn = new (cradle.Connection)(couch.parse_url_for_cradle(couchdb_url));
-var db = conn.database('polyport');
-db.create();
+var db = couch.polyport();
 
 function Package(user, description, from, to) {
     this.user = user;
