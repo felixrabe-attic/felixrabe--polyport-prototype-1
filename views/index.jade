@@ -1,3 +1,7 @@
+if flash.error
+    each error in flash.error
+        p.flash-error= error
+
 if flash.info
     each info in flash.info
         p.flash-info= info

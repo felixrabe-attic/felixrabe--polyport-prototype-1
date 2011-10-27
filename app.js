@@ -93,9 +93,20 @@ app.get('/package/new', userSession, function(req, res) {
 });
 
 app.post('/package/new', userSession, function(req, res) {
-    packages.push(new Package(req.session.email, req.body.description, req.body.from, req.body.to));
-    req.flash('info', 'Package registered successfully. We\'ve got ' + packages.length + ' packages now.');
-    res.redirect('/');
+    db.addPackage({
+        email:       req.session.email,
+        description: req.body.description,
+        from:        req.body.from,
+        to:          req.body.to
+    }, function(err, res_) {
+        var error;
+        if (err) {
+            req.flash('error', '%s', JSON.stringify({err: err, res: res_}));
+        } else if (res_) {
+            req.flash('info', '%s', JSON.stringify({res: res_}));
+        }
+        res.redirect('/');
+    });
 });
 
 app.all('/package/*', userSession, function(req, res) {
