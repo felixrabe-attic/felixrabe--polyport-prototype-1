@@ -16,7 +16,7 @@ function stylus_compile(str, path) {
     .use(nib());
 }
 
-app.configure(function() {
+app.configure(function () {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.bodyParser());
@@ -29,11 +29,11 @@ app.configure(function() {
     app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function() {
+app.configure('development', function () {
     app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
-app.configure('production', function() {
+app.configure('production', function () {
     app.use(express.errorHandler());
 });
 
@@ -71,32 +71,32 @@ function userSession(req, res, next) {
 
 // URL Routes
 
-app.post('/', function(req, res, next) {  // The login page form POSTs here
+app.post('/', function (req, res, next) {  // The login page form POSTs here
     req.session.email = req.body.email;  // Record form data in the session
     res.redirect('/');
 });
 
-app.get('/', userSession, function(req, res) {
+app.get('/', userSession, function (req, res) {
     res.local('flash', req.flash());
     res.render('index');
 });
 
-app.get('/logout', function(req, res) {
+app.get('/logout', function (req, res) {
     req.session.destroy();
     res.redirect('/');
 });
 
-app.get('/package/new', userSession, function(req, res) {
+app.get('/package/new', userSession, function (req, res) {
     res.render('package/new');
 });
 
-app.post('/package/new', userSession, function(req, res) {
+app.post('/package/new', userSession, function (req, res) {
     db.addPackage({
         email:       req.session.email,
         description: req.body.description,
         from:        req.body.from,
         to:          req.body.to
-    }, function(err, res_) {
+    }, function (err, res_) {
         var error;
         if (err) {
             req.flash('error', '%s', JSON.stringify({err: err, res: res_}));
@@ -107,21 +107,21 @@ app.post('/package/new', userSession, function(req, res) {
     });
 });
 
-app.all('/package/*', userSession, function(req, res) {
+app.all('/package/*', userSession, function (req, res) {
     res.render('unimplemented');
 });
 
-app.get('/route/new', userSession, function(req, res) {
+app.get('/route/new', userSession, function (req, res) {
     res.render('route/new');
 });
 
-app.post('/route/new', userSession, function(req, res) {
+app.post('/route/new', userSession, function (req, res) {
     routes.push(new Route(req.session.email, req.body.from, req.body.to, req.body.notes));
     req.flash('info', 'Route registered successfully. We\'ve got ' + routes.length + ' routes now.');
     res.redirect('/');
 });
 
-app.all('/route/*', userSession, function(req, res) {
+app.all('/route/*', userSession, function (req, res) {
     res.render('unimplemented');
 });
 

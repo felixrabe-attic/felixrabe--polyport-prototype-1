@@ -1,6 +1,6 @@
 var couch = require('../lib/couch');
 
-exports.parse_url_for_cradle = function(test) {
+exports.parse_url_for_cradle = function (test) {
     test.deepEqual({ host: 'http://localhost', port: 5984 },
                    couch.parse_url_for_cradle('http://localhost:5984'));
 
