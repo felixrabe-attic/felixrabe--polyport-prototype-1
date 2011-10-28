@@ -23,8 +23,8 @@ app.configure(function () {
     app.use(express.methodOverride());
     app.use(express.cookieParser());
     app.use(express.session({ secret: 'If only you knew' }));
-    app.use(stylus.middleware({ src: __dirname + '/public'
-                              , compile: stylus_compile }));
+    app.use(stylus.middleware({ src: __dirname + '/public',
+                                compile: stylus_compile }));
     app.use(app.router);
     app.use(express.static(__dirname + '/public'));
 });
