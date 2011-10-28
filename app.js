@@ -97,7 +97,6 @@ app.post('/package/new', userSession, function (req, res) {
         from:        req.body.from,
         to:          req.body.to
     }, function (err, res_) {
-        var error;
         if (err) {
             req.flash('error', '%s', JSON.stringify({err: err, res: res_}));
         } else if (res_) {
