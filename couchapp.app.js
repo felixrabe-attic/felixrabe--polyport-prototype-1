@@ -16,5 +16,22 @@ var ddoc;
 
 module.exports = ddoc = {
     _id: '_design/polyport-1',
-    views: {}
+    views: {
+        count_packages: {
+            map: function (doc) {
+                if ('package' === doc.type) {
+                    emit();
+                }
+            },
+            reduce: "_count"
+        },
+        count_routes: {
+            map: function (doc) {
+                if ('route' === doc.type) {
+                    emit();
+                }
+            },
+            reduce: "_count"
+        }
+    }
 };
